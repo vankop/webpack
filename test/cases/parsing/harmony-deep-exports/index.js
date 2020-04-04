@@ -1,5 +1,6 @@
 import * as C from "./reexport-namespace";
 import { counter } from "./reexport-namespace";
+import maxCount from "./reexport-namespace";
 import * as C2 from "./reexport-namespace-again";
 
 it("should allow to reexport namespaces 1", () => {
@@ -23,6 +24,10 @@ it("should allow to reexport namespaces 3", () => {
 	expect(C2.CC.counter.counter).toBe(1);
 });
 
+it("should allow to export default", () => {
+	expect(maxCount).toBe(100);
+});
+
 import CJS from "./cjs";
 
 it("should be able to call a deep function in commonjs", () => {
@@ -32,6 +37,7 @@ it("should be able to call a deep function in commonjs", () => {
 it("should report consistent exports info", () => {
 	const x1 = counter.exportsInfo;
 
+	expect(x1.maxCountInfo).toBe(true);
 	expect(x1.incrementInfo).toBe(true);
 	expect(x1.counterInfo).toBe(true);
 	expect(x1.resetInfo).toBe(true);
@@ -39,6 +45,7 @@ it("should report consistent exports info", () => {
 	expect(x1.unusedExportInfo).toBe(false);
 	expect(x1.somethingElse).toBe(false);
 	expect(x1.somethingElseInfo).toBe(false);
+	expect(x1.maxCount).toBe(true);
 	expect(x1.increment).toBe(true);
 	expect(x1.counter).toBe(true);
 	expect(x1.reset).toBe(true);
@@ -47,10 +54,12 @@ it("should report consistent exports info", () => {
 	expect(C.exportsInfo.nsInfo).toBe(true);
 	expect(C.exportsInfo.ns2).toBe(false);
 	expect(C.exportsInfo.ns2Info).toBe(false);
+	expect(C.exportsInfo.maxCount).toBe(x1.maxCount);
 	expect(C.exportsInfo.increment).toBe(x1.increment);
 	expect(C.exportsInfo.counter).toBe(x1.counter);
 	expect(C.exportsInfo.reset).toBe(x1.reset);
 	expect(C.exportsInfo.unusedExport).toBe(x1.unusedExport);
+	expect(C.exportsInfo.maxCountInfo).toBe(x1.maxCountInfo);
 	expect(C.exportsInfo.incrementInfo).toBe(x1.incrementInfo);
 	expect(C.exportsInfo.counterInfo).toBe(x1.counterInfo);
 	expect(C.exportsInfo.resetInfo).toBe(x1.resetInfo);

@@ -1,7 +1,9 @@
+import maxCount from "./counter";
 import * as counter from "./counter";
 export { counter };
 import * as counter2 from "./counter";
 export { counter2 };
+export default maxCount;
 
 export const exportsInfo = {
 	increment: __webpack_exports_info__.counter.increment.used,
@@ -20,5 +22,7 @@ export const exportsInfo = {
 	ns: __webpack_exports_info__.counter.used,
 	nsInfo: __webpack_exports_info__.counter.useInfo,
 	ns2: __webpack_exports_info__.counter2.used,
-	ns2Info: __webpack_exports_info__.counter2.useInfo
+	ns2Info: __webpack_exports_info__.counter2.useInfo,
+	maxCount: __webpack_exports_info__.maxCount.used,
+	maxCountInfo: __webpack_exports_info__.maxCount.useInfo,
 };
